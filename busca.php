@@ -2,21 +2,23 @@
 include 'funcoes.php';
 
 $categorias = selectCatsPorFilme($_GET["pesquisa"]);
-$filme = selectFilme($_GET["pesquisa"]);
-$sugestoes = selectSugestoes(1);
+$filme      = selectFilme($_GET["pesquisa"]);
+$sugestoes  = selectSugestoes(1);
 ?>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Cabot filmes de ação</title>
-		<link rel="stylesheet" type="text/css" href="estilo.css">
+		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style type="text/css"><?php include "estilo.css"; ?></style>
 	</head>
+
 	<body>
 		<nav class="navbar navbar-dark bg-dark">
 			<a href="filmesacao.php"><input type="button" id="botao" class="btn btn-dark " value="Ação"></a>
@@ -28,8 +30,9 @@ $sugestoes = selectSugestoes(1);
 			<input type="button" id="botao" class="btn btn-dark" value="Romance">
 			<input type="button" id="botao" class="btn btn-dark" value="Terror">
 			<form action="busca.php" method="get">
-			<input type="text" name="pesquisa" placeholder="Pesquise um filme">
-			<input type="submit" name="submit" class="btn btn-dark" value="Pesquisar" autocomplete="on">
+				<input type="text" name="pesquisa" placeholder="Pesquise um filme">
+				<input type="submit" name="submit" class="btn btn-dark" value="Pesquisar" autocomplete="on">
+			</form>
 		</nav>
 		
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -43,7 +46,7 @@ $sugestoes = selectSugestoes(1);
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<center><img src="img/foto1.jpg" alt="Chania"></center>
+					<center><img src="img/foto3.jpg" alt="Chania"></center>
 					<div class="carousel-caption">
 						<h3>Livros</h3>
 						<p>Neste site apresentamos todos os livros no mundo!</p>
@@ -76,29 +79,34 @@ $sugestoes = selectSugestoes(1);
 				<span class="glyphicon glyphicon-chevron-right"></span>
 				<span class="sr-only">Next</span>
 			</a>
-		</div>	
-		<h2>Procura por <?php echo $_GET["pesquisa"]; ?></h2>
-		<h3><?php echo $filme["nome"];?></h3>
-		<img src="img\<?php echo $filme['capa']; ?>" width=200>
-		<p>Descrição: <?php echo $filme["descricao"]; ?></p>
-		<h4>Categorias:</h4>
-		<p>
-			<?php
-			$ultimo = array_key_last($categorias);
-			foreach ($categorias as $i => $categoria):
-			?>
-				<?php
-				//var_dump($categorias);
-				echo $categoria . ($ultimo != $i ? ", " : "");
-				?>
-			<?php endforeach; ?>
-		</p>
-		<a></a>
-		<h3>Sugestões</h3>
-		<?php foreach ($sugestoes as $filme): ?>
-			<p><b><?php echo $filme["nome"]; ?></b></p>
-			<img src="img\<?php echo $filme["capa"]; ?>" width=200>
+		</div>
+		<div class="conteudo">
+			<h2>Procura por <?php echo $_GET["pesquisa"]; ?></h2>
+			<h3><?php echo $filme["nome"];?></h3>
+			<img src="img\<?php echo $filme['capa']; ?>" width=200>
 			<p>Descrição: <?php echo $filme["descricao"]; ?></p>
-		<?php endforeach; ?>
+			<h4>Categorias:</h4>
+			<p>
+				<?php
+				$ultimo = array_key_last($categorias);
+				foreach ($categorias as $i => $categoria):
+					//var_dump($categorias);
+					echo $categoria . ($ultimo != $i ? ", " : "");
+				endforeach;
+				?>
+			</p>
+			<a></a>
+			<h3>Sugestões</h3>
+			<?php
+			foreach ($sugestoes as $i => $filme):
+				if ($i != 0): ?>
+					<p><b><?php echo $filme["nome"]; ?></b></p>
+					<img src="img\<?php echo $filme['capa'];  ?>" width=200>
+					<p>Descrição: <?php echo $filme["descricao"]; ?></p>
+			<?php
+				endif;
+			endforeach;
+			?>
+		</div>
 	</body>
 </html>

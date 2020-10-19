@@ -12,28 +12,47 @@ $pdo = new PDO("mysql:host={$bdServidor};dbname={$bdBanco};charset=utf8;", $bdUs
 function selectSugestoes($id)
 {
 	global $pdo;
-	/*
+	//*
+	// Seleciona o filme selecionado pelo usuário
 	$stmt = $pdo->prepare("SELECT nome, descricao, capa, categorias FROM filmes WHERE id = ?");
 	$stmt->bindValue(1, $id);
 	$stmt->execute();
 	$filme = $stmt->fetch();
 	$filme["categorias"] = explode(",", $filme["categorias"]);
-	$stmt = $pdo->prepare("SELECT nome, descricao, capa, categorias FROM filmes WHERE id <> ?");
+	// Seleciona os filmes a serem comparados
+	$stmt = $pdo->prepare("SELECT id, nome, descricao, capa, categorias FROM filmes WHERE id <> ?");
 	$stmt->bindValue(1, $id);
 	$stmt->execute();
 	$listaFilmes = $stmt->fetchAll();
 	$pontuacoes = array();
+	$ids = array();
 	foreach ($listaFilmes as $i => $fil)
 	{
 		$fil["categorias"] = explode(",", $fil["categorias"]);
 		$pontos = 0;
 		foreach ($fil["categorias"] as $categoria)
 		{
-			if (in_array($categoria, $filme["categorias"])) ++$pontos;
+			if (in_array($categoria, $filme["categorias"]))
+			{
+				if ($categoria == "Oscar") $pontos += 0.5;
+				else ++$pontos;
+			}
 		}
-		$pontuacoes[$i] = $pontos;
+		echo $pontos.": ";
+		$pontuacoes[] = $pontos;
+		echo $fil["id"]."<br>";
+		$ids[] = $fil["id"];
 	}
-	
+	array_multisort($pontuacoes, SORT_DESC, $ids);
+	$sugestoes = array();
+	$c = 0;
+	foreach ($ids as $id)
+	{
+		$sugestoes[] = selectFilmePorId($id);
+		if ($c++ == 5) break;
+	}
+	var_dump($sugestoes);
+	return $sugestoes;
 	/*/
 	$stmt = $pdo->prepare("SELECT nome, capa, descricao FROM filmes
 	                       WHERE id = 6 OR id = 7 OR id = 8");
@@ -85,7 +104,7 @@ function selectFilme($filme)
 function selectFilmePorId($id)
 {
 	global $pdo;
-	$stmt = $pdo->prepare("SELECT nome, descricao, capa FROM filmes WHERE id_filme = ?");
+	$stmt = $pdo->prepare("SELECT nome, descricao, capa FROM filmes WHERE id = ?");
 	$stmt->bindValue(1, $id);
 	$stmt->execute();
 	$res = $stmt->fetch();
