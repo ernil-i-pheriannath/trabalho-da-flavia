@@ -1,3 +1,8 @@
+<?php
+include "funcoes.php";
+$filmes = selectFilmesPorCat("Ação");
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,19 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="estilo.css">
 		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
 		<style type="text/css">
-			body {
-				background-color: #aaaaaa;
-				font-family: sans-serif;
-				font-size: 18px;
-				margin: auto;
-			}
-			.botao {
-	            border-radius: 10px;
-	            font-family: sans-serif;
-	            background-color: lightgreen;
-	            height:30px;
-	            width: 100px;
-        	}
+			
 		</style>
 	</head>
 	<body clas="bg-primary">
@@ -40,8 +33,6 @@
 			<h2>filmes de ação</h2>
 			<p>
 				<?php
-				include "funcoes.php";
-				$filmes = selectFilmesPorCat(1);
 				foreach ($filmes as $filme):
 					$imagem = "img\\".$filme['capa'];
 				?>

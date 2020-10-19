@@ -1,4 +1,13 @@
 body {
-	background-color: blue;
-	font-family: sans-serif;
-}
+				background-color: #aaaaaa;
+				font-family: sans-serif;
+				font-size: 18px;
+				margin: auto;
+			}
+			.botao {
+	            border-radius: 10px;
+	            font-family: sans-serif;
+	            background-color: lightgreen;
+	            height:30px;
+	            width: 100px;
+        	}
