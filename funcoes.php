@@ -9,7 +9,7 @@ $bdBanco    = 'cabot_3';
 
 $pdo = new PDO("mysql:host={$bdServidor};dbname={$bdBanco};charset=utf8;", $bdUsuario, $bdSenha);
 
-function selectSugestoes($id)
+function selectSugestoes($id, $limite = -1)
 {
 	global $pdo;
 	//*
@@ -24,6 +24,7 @@ function selectSugestoes($id)
 	$stmt->bindValue(1, $id);
 	$stmt->execute();
 	$listaFilmes = $stmt->fetchAll();
+	// Pontua os filmes
 	$pontuacoes = array();
 	$ids = array();
 	foreach ($listaFilmes as $i => $fil)
@@ -43,13 +44,15 @@ function selectSugestoes($id)
 		echo $fil["id"]."<br>";
 		$ids[] = $fil["id"];
 	}
+	// Arruma os vetores para estarem em ordem
 	array_multisort($pontuacoes, SORT_DESC, $ids);
+	// Pega os dados dos filmes para serem retornados
 	$sugestoes = array();
 	$c = 0;
 	foreach ($ids as $id)
 	{
 		$sugestoes[] = selectFilmePorId($id);
-		if ($c++ == 5) break;
+		if ($c++ == $limite) break;
 	}
 	var_dump($sugestoes);
 	return $sugestoes;
@@ -93,11 +96,10 @@ function selectFilme($filme)
 {
 	global $pdo;
 	$str = "%".$filme."%";
-	$stmt = $pdo->prepare("SELECT nome, descricao, capa FROM filmes WHERE nome LIKE ? LIMIT 1");
+	$stmt = $pdo->prepare("SELECT id, nome, descricao, capa FROM filmes WHERE nome LIKE ? LIMIT 1");
 	$stmt->bindValue(1, $str);
 	$stmt->execute();
 	$res = $stmt->fetch();
-	
 	return $res;
 }
 

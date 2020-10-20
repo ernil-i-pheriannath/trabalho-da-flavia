@@ -4,21 +4,7 @@
 		<meta charset="utf-8">
 		<title>Cabot</title>
 		<link rel="stylesheet" type="text/css" href="estilo.css">
-		<style type="text/css">
-			body {
-				background-color: #aaaaaa;
-				font-family: sans-serif;
-				font-size: 18px;
-				margin: auto;
-			}
-			.botao {
-	            border-radius: 10px;
-	            font-family: sans-serif;
-	            background-color: lightgreen;
-	            height:30px;
-	            width: 100px;
-	        }
-		</style>
+		<style type="text/css"><?php include "estilo.css"; ?></style>
 	</head>
 	<body>
 		<div class="container-fluid">

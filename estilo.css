@@ -1,4 +1,75 @@
+body {
+	background-color:
+		 /*
+		#aec7cf;
+		/*/
+		#ebf0f2;
+		/**/
+	font-family: Calibri, sans-serif;
+	margin: 0;
+}
+
 .conteudo {
-	margin-left: 5%;
-	margin-right: 5%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+nav {
+	display: inline-flex;
+	flex-wrap: wrap;
+	width: 90%;
+	background-color: #14018c;
+	padding: 0% 5%;
+}
+
+nav .botoes {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+form {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+.item-nav {
+	margin-right: 5px;
+	height: 30px;
+	width: 100px;
+}
+
+.botao-nav {
+	background-color: #0082ba;
+	color: #e6e6e6;
+	/*border-radius: 10px;*/
+	border-width: 0px;
+	margin-top: 10;
+	margin-bottom: 10;
+}
+
+#pesquisa {
+	display: inline;
+	vertical-align: middle;
+	order: 2;
+	margin-left: auto;
+	margin-right: 0;
+	margin-top: 10;
+	margin-bottom: 10;
+}
+
+[name = pesquisa] {
+	width: 150px;
+}
+
+#sugestoes {
+	display: inline-flex;
+	flex-wrap: wrap;
+}
+
+.sugestao {
+	margin: 5px;
+	padding: 0px 10px;
+	background-color: #aec7cf;
 }

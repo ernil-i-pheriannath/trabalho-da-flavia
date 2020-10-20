@@ -10,9 +10,7 @@ $filmes = selectFilmesPorCat("Ação");
 		<title>Cabot filmes de ação</title>
 		<link rel="stylesheet" type="text/css" href="estilo.css">
 		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
-		<style type="text/css">
-			
-		</style>
+		<style type="text/css"><?php include "estilo.css"; ?></style>
 	</head>
 	<body clas="bg-primary">
 		<div class="container-fluid">
