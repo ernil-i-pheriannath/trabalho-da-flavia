@@ -48,6 +48,11 @@ form {
 	margin-top: 10;
 	margin-bottom: 10;
 }
+.botao-nav:hover {
+	cursor: pointer;
+	background-color: #e6e6e6;
+	color: #0082ba;
+}
 
 #pesquisa {
 	display: inline;

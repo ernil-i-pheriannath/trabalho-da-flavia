@@ -1,41 +1,39 @@
 <?php
 include "funcoes.php";
-
 $categorias = selectCatsPorFilme($_GET["pesquisa"]);
-$filme      = selectFilme($_GET["pesquisa"]);
-$sugestoes  = selectSugestoes($filme["id"]);
+$filme = selectFilme($_GET["pesquisa"]);
+$sugestoes = selectSugestoes($filme["id"]);
 ?>
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Pesquisa por '<?= $_GET["pesquisa"]; ?>'</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type="text/css"><?php include "estilo.css"; ?></style>
-	</head>
+<head>
+<meta charset="utf-8">
+<title>Pesquisa por '<?= $_GET["pesquisa"]; ?>'</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css"><?php include "estilo.css"; ?></style>
+</head>
 
-	<body>
-		<nav width="100%">
-			<div class="botoes">
-				<a href="filmesacao.php"><input type="button" class="item-nav botao-nav" value="Ação"></a>
-				<input type="button" class="item-nav botao-nav" value="Animação">
-				<input type="button" class="item-nav botao-nav" value="Comédia">
-				<input type="button" class="item-nav botao-nav" value="Documentário">
-				<input type="button" class="item-nav botao-nav" value="Drama">
-				<input type="button" class="item-nav botao-nav" value="Ficção científica">
-				<input type="button" class="item-nav botao-nav" value="Romance">
-				<input type="button" class="item-nav botao-nav" value="Terror">
-			</div>
-			<div id="pesquisa">
-				<form action="busca.php" method="get">
-					<input type="text" name="pesquisa" class="item-nav" placeholder="Pesquise um filme" width="100px">
-					<input type="submit" name="submit" class="item-nav botao-nav" value="Pesquisar" autocomplete="on">
-				</form>
-			</div>
-		</nav>
-		
-		<!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<body>
+	<nav width="100%">
+		<div class="botoes">
+			<a href="filmesacao.php"><input type="button" class="item-nav botao-nav" value="Ação"></a>
+			<input type="button" class="item-nav botao-nav" value="Animação">
+			<input type="button" class="item-nav botao-nav" value="Comédia">
+			<input type="button" class="item-nav botao-nav" value="Documentário">
+			<input type="button" class="item-nav botao-nav" value="Drama">
+			<input type="button" class="item-nav botao-nav" value="Ficção científica">
+			<input type="button" class="item-nav botao-nav" value="Romance">
+			<input type="button" class="item-nav botao-nav" value="Terror">
+		</div>
+		<div id="pesquisa">
+			<form action="busca-sem-bs.php" method="get">
+				<input type="text" name="pesquisa" class="item-nav" placeholder="Pesquise um filme" width="100px">
+				<input type="submit" name="submit" class="item-nav botao-nav" value="Pesquisar" autocomplete="on">
+			</form>
+		</div>
+	</nav>
+	<!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -80,33 +78,32 @@ $sugestoes  = selectSugestoes($filme["id"]);
 				<span class="sr-only">Next</span>
 			</a>
 		</div>-->
-		<div class="conteudo">
-			<h1>Resultados da pesquisa por '<?= $_GET["pesquisa"]; ?>'</h1>
-			<h2>Filme encontrado: <?= $filme["nome"];?></h2>
-			<img src="img\<?= $filme['capa']; ?>" width=200>
-			<p>Descrição: <?= $filme["descricao"]; ?></p>
-			<p>
-				<b>Categorias:</b>
+	<div class="conteudo">
+		<h1>Resultados da pesquisa por '<?= $_GET["pesquisa"]; ?>'</h1>
+		<h2>Filme encontrado: <?= $filme["nome"];?></h2>
+		<img src="img\<?= $filme['capa']; ?>" width=200>
+		<p>Descrição: <?= $filme["descricao"]; ?></p>
+		<p>
+			<b>Categorias:</b>
 				<?php
 				$ultimo = array_key_last($categorias);
-				foreach ($categorias as $i => $categoria):
-					//var_dump($categorias);
+				foreach ($categorias as $i => $categoria)
+				{
+					// var_dump($categorias);
 					echo $categoria . ($i != $ultimo ? ", " : "");
-				endforeach;
+				}
 				?>
-			<p>
-			<a></a>
-			<br>
-			<h2>Sugestões</h2>
-			<div id="sugestoes">
-				<?php foreach ($sugestoes as $i => $filme): ?>
-					<div class="sugestao">
-						<h3><?= $filme["nome"]; ?></h3>
-						<img src="img\<?= $filme['capa'];  ?>" width=200>
-						<p>Descrição: <?= $filme["descricao"]; ?></p>
-					</div>
-				<?php endforeach; ?>
+		</p>
+		<h2>Sugestões</h2>
+		<div id="sugestoes">
+		<?php foreach ($sugestoes as $filme): ?>
+			<div class="sugestao" width="220">
+				<h3><?= $filme["nome"]; ?></h3>
+				<img src="img\<?= $filme['capa'];  ?>" width=200>
+				<p>Descrição: <?= $filme["descricao"]; ?></p>
 			</div>
+		<?php endforeach; ?>
 		</div>
-	</body>
+	</div>
+</body>
 </html>
