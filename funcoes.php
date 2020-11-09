@@ -3,13 +3,13 @@ header('Content-Type: text/html; charset=utf-8');
 session_start();
 
 $bdServidor = '127.0.0.1';
-$bdUsuario  = 'root';
-$bdSenha    = '';
-$bdBanco    = 'cabot_3';
+$bdUsuario = 'root';
+$bdSenha = '';
+$bdBanco = 'cabot_3';
 
 $pdo = new PDO("mysql:host={$bdServidor};dbname={$bdBanco};charset=utf8;", $bdUsuario, $bdSenha);
 
-function selectSugestoes($id, $limite = -1)
+function selectSugestoes($id, $limite = -1, $minimo = 0.99)
 {
 	global $pdo;
 	//*
@@ -39,10 +39,12 @@ function selectSugestoes($id, $limite = -1)
 				else ++$pontos;
 			}
 		}
-		echo $pontos.": ";
-		$pontuacoes[] = $pontos;
-		echo $fil["id"]."<br>";
-		$ids[] = $fil["id"];
+		if ($pontos >= $minimo
+		)
+		{
+			$pontuacoes[] = $pontos;
+			$ids[] = $fil["id"];
+		}
 	}
 	// Arruma os vetores para estarem em ordem
 	array_multisort($pontuacoes, SORT_DESC, $ids);
@@ -51,23 +53,22 @@ function selectSugestoes($id, $limite = -1)
 	$c = 0;
 	foreach ($ids as $id)
 	{
+		if ($c == $limite) break;
 		$sugestoes[] = selectFilmePorId($id);
-		if ($c++ == $limite) break;
+		++$c;
 	}
-	var_dump($sugestoes);
 	return $sugestoes;
 	/*/
 	$stmt = $pdo->prepare("SELECT nome, capa, descricao FROM filmes
-	                       WHERE id = 6 OR id = 7 OR id = 8");
+	WHERE id = 6 OR id = 7 OR id = 8");
 	$stmt->execute();
 	return $stmt->fetchAll();
-	//*/
+	*/
 }
 
 function selectFilmesPorCat($categoria)
 {
 	global $pdo;
-	echo $categoria;
 	$str = "%".$categoria."%";
 	$stmt = $pdo->prepare("SELECT nome, descicao, capa FROM filmes WHERE categorias like ?");
 	$stmt->bindValue(1, $str);

@@ -1,6 +1,6 @@
 body {
 	background-color:
-		 /*
+		/**
 		#aec7cf;
 		/*/
 		#ebf0f2;
@@ -15,11 +15,11 @@ body {
 }
 
 nav {
-	display: inline-flex;
-	flex-wrap: wrap;
+	display: flex;
+	justify-content: center;
 	width: 90%;
 	background-color: #14018c;
-	padding: 0% 5%;
+	padding: 10px 5%;
 }
 
 nav .botoes {
@@ -29,7 +29,7 @@ nav .botoes {
 }
 
 form {
-	display: inline;
+	display: inline-flex;
 	margin: 0;
 	padding: 0;
 }
@@ -45,25 +45,25 @@ form {
 	color: #e6e6e6;
 	/*border-radius: 10px;*/
 	border-width: 0px;
-	margin-top: 10;
-	margin-bottom: 10;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .botao-nav:hover {
 	cursor: pointer;
 	background-color: #e6e6e6;
 	color: #0082ba;
 }
-
+/* div */
 #pesquisa {
-	display: inline;
+	display: inline-flex;
 	vertical-align: middle;
 	order: 2;
-	margin-left: auto;
-	margin-right: 0;
-	margin-top: 10;
-	margin-bottom: 10;
+	align-content: center;
+	justify-content: space-between;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
-
+/* caixa de texto */
 [name = pesquisa] {
 	width: 150px;
 }
@@ -74,7 +74,18 @@ form {
 }
 
 .sugestao {
+	width: 20%;
+	min-width: 220px;
 	margin: 5px;
 	padding: 0px 10px;
 	background-color: #aec7cf;
+}
+
+.sugestao img {
+	display: block;
+	margin: auto;
+}
+
+.sugestao p, h3 {
+	margin-left: 5%;
 }
