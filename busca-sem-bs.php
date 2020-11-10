@@ -6,17 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css"><?php include "estilo.css"; ?></style>
 </head>
-
 <body>
-	<?php
-	include "barra-nav.html";
-	include "funcoes.php";
-	$categorias = selectCatsPorFilme($_GET["pesquisa"]);
-	$filme = selectFilme($_GET["pesquisa"]);
-	if ($filme):
-		$sugestoes = selectSugestoes($filme["id"]);
-	?>
-		<div class="conteudo">
+	<div class="conteudo">
+		<?php
+		include "barra-nav.html";
+		include "funcoes.php";
+		$categorias = selectCatsPorFilme($_GET["pesquisa"]);
+		$filme = selectFilme($_GET["pesquisa"]);
+		if ($filme):
+			$sugestoes = selectSugestoes($filme["id"], -1, 0.0);
+		?>
 			<h1>Resultados da pesquisa por '<?= $_GET["pesquisa"]; ?>'</h1>
 			<h2>Filme encontrado: <?= $filme["nome"];?></h2>
 			<img src="img\<?= $filme['capa']; ?>" width=200>
@@ -32,21 +31,21 @@
 					?>
 			</p>
 			<h2>Sugestões</h2>
-			<div id="sugestoes">
-			<?php foreach ($sugestoes as $filme): ?>
-				<div class="sugestao">
-					<h3><?= $filme["nome"]; ?></h3>
-					<img src="img\<?= $filme['capa'];  ?>" width=200>
-					<p>Descrição: <?= $filme["descricao"]; ?></p>
+			<center>
+				<div id="sugestoes">
+				<?php foreach ($sugestoes as $filme): ?>
+					<div class="sugestao">
+						<h3><?= $filme["nome"]; ?></h3>
+						<img src="img\<?= $filme['capa'];  ?>" width=200>
+						<p>Descrição: <?= $filme["descricao"]; ?></p>
+					</div>
+				<?php endforeach; ?>
 				</div>
-			<?php endforeach; ?>
-			</div>
-		</div>
-	<?php else: ?>
-		<div class="conteudo">
-			<h1>Filme não encontrado</h1>
+			</center>
+		<?php else: ?>
+			<h1>Filme '<?= $_GET["pesquisa"]; ?>' não encontrado</h1>
 			<h2>Tente procurar com termos mais genéricos. Lembre-se que só é possível procurar pelo título.</h2>
-		</div>
-	<?php endif; ?>
+		<?php endif; ?>
+	</div>
 </body>
 </html>

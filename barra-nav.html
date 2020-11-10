@@ -1,19 +1,20 @@
 <nav width="100%">
 	<form action="categoria.php" method="get">
-		<div class="botoes"><input type="button" class="item-nav botao-nav" value="Ação">
-			<input type="button" class="item-nav botao-nav" value="Animação" name="Animação">
-			<input type="button" class="item-nav botao-nav" value="Comédia" name="Comédia">
-			<input type="button" class="item-nav botao-nav" value="Documentário" name="Documentário">
-			<input type="button" class="item-nav botao-nav" value="Drama" name="">
-			<input type="button" class="item-nav botao-nav" value="Ficção científica" name="">
-			<input type="button" class="item-nav botao-nav" value="Romance" name="">
-			<input type="button" class="item-nav botao-nav" value="Terror" name="">
+		<div class="botoes">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Ação">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Animação">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Comédia">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Documentário">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Drama">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Ficção científica">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Romance">
+			<input type="submit" class="item-nav botao-nav" name="categoria" value="Terror">
 		</div>
-		<div id="pesquisa">
-			<form action="busca-sem-bs.php" method="get">
-				<input type="text" name="pesquisa" class="item-nav" placeholder="Pesquise um filme">
-				<input type="submit" name="submit" class="item-nav botao-nav" value="Pesquisar" autocomplete="on">
-			</form>
+	</form>
+	<form action="busca-sem-bs.php" method="get">
+		<div id="pesquisa">	
+			<input type="text" name="pesquisa" class="item-nav" placeholder="Pesquise um filme">
+			<input type="submit" name="submit" class="item-nav botao-nav" value="Pesquisar" autocomplete="on">
 		</div>
 	</form>
 </nav>

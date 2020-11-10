@@ -17,7 +17,7 @@ body {
 nav {
 	display: flex;
 	justify-content: center;
-	width: 90%;
+	width: 100%;
 	background-color: #14018c;
 	padding: 10px 5%;
 }
@@ -25,13 +25,14 @@ nav {
 nav .botoes {
 	display: inline-flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	align-items: center;
 }
 
 form {
 	display: inline-flex;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
 
 .item-nav {
@@ -47,6 +48,7 @@ form {
 	border-width: 0px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+
 }
 .botao-nav:hover {
 	cursor: pointer;
@@ -55,22 +57,21 @@ form {
 }
 /* div */
 #pesquisa {
-	display: inline-flex;
-	vertical-align: middle;
-	order: 2;
-	align-content: center;
-	justify-content: space-between;
+	display: inline;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 /* caixa de texto */
 [name = pesquisa] {
+	border-width: 0px;
 	width: 150px;
+	height: 28px
 }
 
 #sugestoes {
 	display: inline-flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .sugestao {
