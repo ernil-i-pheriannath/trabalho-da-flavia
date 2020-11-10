@@ -8,36 +8,12 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE DATABASE IF NOT EXISTS `cabot_3` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `cabot_3`;
 
-DROP TABLE IF EXISTS `filmes`;
-CREATE TABLE `filmes` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `descricao` text DEFAULT NULL,
-  `capa` varchar(50) DEFAULT NULL,
-  `categorias` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-INSERT INTO `filmes` (`id`, `nome`, `descricao`, `capa`, `categorias`) VALUES
-(1, 'John Wick', 'descrição', 'johnwickcapa.jpg', 'Ação,Oscar'),
-(2, 'Vingadores Ultimato', 'descrição', 'vingadoresultimatocapa.jpg', 'Ação,Comédia,Aventura,Super-heróis,Oscar'),
-(3, 'Se eu Fosse Você', 'descrição', 'seeufossevocecapa.jpg', 'Comédia'),
-(4, 'Vingadores Guerra Infinita', 'descrição', 'vingadoresguerrainfinitacapa.jpg', 'Ação,Super-heróis,Oscar'),
-(5, 'Titanic', 'descrição', 'titaniccapa.jpg', 'Drama,Oscar'),
-(6, 'O Haloween de Hubie', 'descrição', 'ohalloweendohubiecapa.jpg', 'Comédia,Terror'),
-(7, 'The Room', 'descrição', 'theroomcapa.jpg', 'Drama,Conceitual'),
-(8, 'Esqueceram de mim', 'descrição', 'esqueceramdemimcapa.jpg', 'Comédia,Oscar'),
-(9, 'Frozen/Cinderela 2', 'descrição', 'frozen2capa.jpg', 'Comédia,Aventura,Fantasia,Drama,Animação,Oscar'),
-(11, 'Matrix', 'descrição', 'matrixcapa.jpg', 'Ação');
-
-DROP TABLE IF EXISTS `_categorias`;
-CREATE TABLE `_categorias` (
+CREATE TABLE `categorias` (
   `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `_categorias` (`nome`) VALUES
+INSERT INTO `categorias` VALUES
 ('Ação'),
 ('Comédia'),
 ('Aventura'),
@@ -97,6 +73,26 @@ INSERT INTO `_categorias` (`nome`) VALUES
 ('Aliens'),
 ('Distopia'),
 ('História Alternativa');
+
+CREATE TABLE `filmes` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `capa` varchar(50) DEFAULT NULL,
+  `categorias` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `filmes` VALUES
+(1, 'John Wick', 'descrição', 'johnwickcapa.jpg', 'Ação,Oscar'),
+(2, 'Vingadores Ultimato', 'descrição', 'vingadoresultimatocapa.jpg', 'Ação,Aventura,Super-heróis,Oscar'),
+(3, 'Se eu Fosse Você', 'descrição', 'seeufossevocecapa.jpg', 'Comédia'),
+(4, 'Vingadores Guerra Infinita', 'descrição', 'vingadoresguerrainfinitacapa.jpg', 'Ação,Super-heróis,Oscar'),
+(5, 'Titanic', 'descrição', 'titaniccapa.jpg', 'Drama,Oscar,Desastre'),
+(6, 'O Haloween de Hubie', 'descrição', 'ohalloweendohubiecapa.jpg', 'Comédia,Terror'),
+(7, 'The Room', 'descrição', 'theroomcapa.jpg', 'Drama,Conceitual'),
+(8, 'Esqueceram de mim', 'descrição', 'esqueceramdemimcapa.jpg', 'Comédia,Oscar'),
+(9, 'Frozen/Cinderela 2', 'descrição', 'frozen2capa.jpg', 'Musical,Fantasia,Animação,Oscar'),
+(11, 'Matrix', 'descrição', 'matrixcapa.jpg', 'Ação,Apocalipse,Ficção Científica');
 
 
 ALTER TABLE `filmes`
